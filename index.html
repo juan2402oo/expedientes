@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Expedientes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+
+        .container-form {
+            margin-top: 80px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .container-form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 15px 45px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-banner {
+            background-color: #3b82f6;
+            color: #fff;
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px 15px 0 0;
+            margin-bottom: -75px;
+            margin-top: 20px;
+
+        }
+
+        .header-banner h2 {
+            font-size: 26px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background-color: #28a745;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #218838;
+        }
+
+        .btn-secondary {
+            background-color: #dc3545;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background-color: #c82333;
+        }
+
+        input[type="text"], input[type="date"], input[type="time"], input[type="number"], select, textarea, input[type="file"] {
+            border-radius: 10px;
+            border: 1px solid #ced4da;
+            padding: 10px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #3b82f6;
+            box-shadow: none;
+        }
+
+        .form-check-label {
+            font-size: 15px;
+            color: #666;
+        }
+
+        .container-form {
+            margin-bottom: 100px;
+        }
+
+        @media (max-width: 768px) {
+            .container-form {
+                padding: 20px;
+            }
+
+            .header-banner h2 {
+                font-size: 22px;
+            }
+
+            input[type="text"], input[type="date"], input[type="time"], input[type="number"], select, textarea, input[type="file"] {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="header-banner">
+                    <h2>Registro de Expedientes</h2>
+                </div>
+
+                <div class="container-form">
+                    <form action="registro_expediente.php" method="post" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="numero_expediente" class="form-label">Número de Expediente</label>
+                            <input type="text" class="form-control" id="numero_expediente" name="numero_expediente" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="solicitante" class="form-label">Solicitante</label>
+                            <input type="text" class="form-control" id="solicitante" name="solicitante" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="asunto" class="form-label">Asunto</label>
+                            <textarea class="form-control" id="asunto" name="asunto" rows="3" required></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="fecha" class="form-label">Fecha</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha" required>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="hora" class="form-label">Hora</label>
+                                <input type="time" class="form-control" id="hora" name="hora" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tipo_documento" class="form-label">Tipo de Documento</label>
+                            <select class="form-select" id="tipo_documento" name="tipo_documento" required>
+                                <option value="FUT">FUT</option>
+                                <option value="Oficio">Oficio</option>
+                                <option value="Carta">Carta</option>
+                                <option value="Carta Notarial">Carta Notarial</option>
+                                <option value="Informe">Informe</option>
+                                <option value="Notificación">Notificación</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="num_folios" class="form-label">Número de Folios</label>
+                            <input type="number" class="form-control" id="num_folios" name="num_folios" required>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="documentos_adjuntos" class="form-label">Documentos Adjuntos</label>
+                            <input type="file" class="form-control" id="documentos_adjuntos" name="documentos_adjuntos[]" multiple>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="area_destino" class="form-label">Área de Destino</label>
+                            <select class="form-select" id="area_destino" name="area_destino" required>
+                                <option value="Jefatura">Jefatura</option>
+                                <option value="Coordinación">Coordinación</option>
+                                <option value="Biblioteca">Biblioteca</option>
+                                <option value="Administración">Administración</option>
+                                <option value="Dirección">Dirección</option>
+                            </select>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label for="requisitos" class="form-label">Requisitos</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="recibo_pago" name="requisitos[]" value="Recibo de Pago">
+                                <label class="form-check-label" for="recibo_pago">Recibo de Pago</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="doc_autorizacion" name="requisitos[]" value="Documento de Autorización de Trámite">
+                                <label class="form-check-label" for="doc_autorizacion">Documento de Autorización</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" id="otros_derechos" name="requisitos[]" value="Otros Derechos">
+                                <label class="form-check-label" for="otros_derechos">Otros Derechos</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="reset" class="btn btn-secondary">Resetear</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const fechaInput = document.getElementById('fecha');
+        const horaInput = document.getElementById('hora');
+        
+        const today = new Date();
+        const formattedDate = today.toISOString().substr(0, 10);
+        const formattedTime = today.toTimeString().substr(0, 5);
+        
+        fechaInput.value = formattedDate;
+        horaInput.value = formattedTime;
+    </script>
+</body>
+</html>
